@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "gprintf.h": "c",
+        "glib.h": "c",
+        "gfileutils.h": "c",
+        "gerror.h": "c",
+        "galloca.h": "c",
+        "giochannel.h": "c",
+        "gasyncqueue.h": "c",
+        "gtypes.h": "c",
+        "algorithm": "cpp"
+    }
+}
