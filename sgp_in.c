@@ -37,8 +37,8 @@
 
 /* Ported to C by N. Kyriazis  April 6  20011111 */
 
-#include <glib.h>
-#include <glib/gprintf.h>
+//#include <glib.h>
+//#include <glib/gprintf.h>
 #include "sgp4sdp4.h"
 
 /* Calculates the checksum mod 10 of a line from a TLE set and */
@@ -133,7 +133,7 @@ void Convert_Satellite_Data(char *tle_set, tle_t * tle)
         buff[3] = '0';
     buff[14] = '\0';
     //        tle->epoch = atof (buff);
-    tle->epoch = g_ascii_strtod(buff, NULL);
+    tle->epoch = atof(buff);
 
     /* Now, convert the epoch time into year, day
        and fraction of day, according to:
@@ -155,13 +155,13 @@ void Convert_Satellite_Data(char *tle_set, tle_t * tle)
     buff[0] = '0';
     strncpy(&buff[1], &tle_set[23], 9);
     buff[10] = '\0';
-    tle->epoch_fod = g_ascii_strtod(buff, NULL);
+    tle->epoch_fod = atof(buff);
 
 
     /* Satellite's First Time Derivative */
     strncpy(buff, &tle_set[33], 10);
     buff[10] = '\0';
-    tle->xndt2o = g_ascii_strtod(buff, NULL);
+    tle->xndt2o = atof(buff);
 
     /* Satellite's Second Time Derivative */
     strncpy(buff, &tle_set[44], 1);
@@ -170,7 +170,7 @@ void Convert_Satellite_Data(char *tle_set, tle_t * tle)
     buff[7] = 'E';
     strncpy(&buff[8], &tle_set[50], 2);
     buff[10] = '\0';
-    tle->xndd6o = g_ascii_strtod(buff, NULL);
+    tle->xndd6o = atof(buff);
 
     /* Satellite's bstar drag term
      * FIXME: How about buff[0] ????
@@ -181,7 +181,7 @@ void Convert_Satellite_Data(char *tle_set, tle_t * tle)
     buff[7] = 'E';
     strncpy(&buff[8], &tle_set[59], 2);
     buff[10] = '\0';
-    tle->bstar = g_ascii_strtod(buff, NULL);
+    tle->bstar = atof(buff);
 
     /* Element Number */
     strncpy(buff, &tle_set[64], 4);
@@ -191,18 +191,18 @@ void Convert_Satellite_Data(char *tle_set, tle_t * tle)
     /* Satellite's Orbital Inclination (degrees) */
     strncpy(buff, &tle_set[77], 8);
     buff[8] = '\0';
-    tle->xincl = g_ascii_strtod(buff, NULL);
+    tle->xincl = atof(buff);
 
     /* Satellite's RAAN (degrees) */
     strncpy(buff, &tle_set[86], 8);
     buff[8] = '\0';
-    tle->xnodeo = g_ascii_strtod(buff, NULL);
+    tle->xnodeo = atof(buff);
 
     /* Satellite's Orbital Eccentricity */
     buff[0] = '.';
     strncpy(&buff[1], &tle_set[95], 7);
     buff[8] = '\0';
-    tle->eo = g_ascii_strtod(buff, NULL);
+    tle->eo = atof(buff);
     /* avoid division by 0 */
     if (tle->eo < 1.0e-6)
         tle->eo = 1.0e-6;
@@ -210,22 +210,22 @@ void Convert_Satellite_Data(char *tle_set, tle_t * tle)
     /* Satellite's Argument of Perigee (degrees) */
     strncpy(buff, &tle_set[103], 8);
     buff[8] = '\0';
-    tle->omegao = g_ascii_strtod(buff, NULL);
+    tle->omegao = atof(buff);
 
     /* Satellite's Mean Anomaly of Orbit (degrees) */
     strncpy(buff, &tle_set[112], 8);
     buff[8] = '\0';
-    tle->xmo = g_ascii_strtod(buff, NULL);
+    tle->xmo = atof(buff);
 
     /* Satellite's Mean Motion (rev/day) */
     strncpy(buff, &tle_set[121], 10);
     buff[10] = '\0';
-    tle->xno = g_ascii_strtod(buff, NULL);
+    tle->xno = atof(buff);
 
     /* Satellite's Revolution number at epoch */
     strncpy(buff, &tle_set[132], 5);
     buff[5] = '\0';
-    tle->revnum = g_ascii_strtod(buff, NULL);
+    tle->revnum = atof(buff);
 
 }
 

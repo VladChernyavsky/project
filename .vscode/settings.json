@@ -8,6 +8,11 @@
         "giochannel.h": "c",
         "gasyncqueue.h": "c",
         "gtypes.h": "c",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "sgp4sdp4.h": "c",
+        "cmath": "cpp",
+        "limits.h": "c",
+        "stdint.h": "c"
+
     }
 }
